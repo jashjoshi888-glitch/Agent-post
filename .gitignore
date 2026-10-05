@@ -49,3 +49,7 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
+
+# ---- Local helper scripts (may contain your keys) ----
+app/run_dev.sh
+run_*.sh
