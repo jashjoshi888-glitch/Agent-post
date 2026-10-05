@@ -1,0 +1,58 @@
+// App-level Gradle build file for the AgentPost Android app.
+//
+// Plain-language notes:
+//   * applicationId "in.agentpost.app" is the app's permanent Play Store ID
+//     (decided with the owner — see docs/DECISIONS.md).
+//   * minSdk 26 = the app works on Android 8.0 and newer.
+//   * Release builds are signed with the debug key for now; proper Play Store
+//     signing is set up when we prepare the store listing (later phase).
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader("UTF-8") { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterVersionCode = localProperties.getProperty("flutter.versionCode") ?: "1"
+def flutterVersionName = localProperties.getProperty("flutter.versionName") ?: "1.0"
+
+android {
+    namespace = "in.agentpost.app"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
+    }
+
+    defaultConfig {
+        applicationId = "in.agentpost.app"
+        minSdk = 26
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutterVersionCode.toInteger()
+        versionName = flutterVersionName
+    }
+
+    buildTypes {
+        release {
+            // TODO (later phase): replace with the real Play Store keystore.
+            signingConfig = signingConfigs.debug
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}

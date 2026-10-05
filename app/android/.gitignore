@@ -1,0 +1,7 @@
+# Android build tooling (generated locally — never commit)
+local.properties
+.gradle/
+app/.cxx/
+key.properties
+*.jks
+*.keystore
