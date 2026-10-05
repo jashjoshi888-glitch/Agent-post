@@ -1,0 +1,66 @@
+# AgentPost — continuous integration.
+# Runs on every push and pull request: database security tests, admin
+# dashboard build, and Flutter code checks. (GitHub's machines have full
+# internet access, so the Flutter job works there even if local networks
+# restrict downloads.)
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  database-tests:
+    name: Database security tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install test tooling
+        run: npm ci
+      - name: RLS coverage check (every table has privacy rules)
+        run: npm run test:rls-coverage
+      - name: Full rebuild + cross-account attack simulation
+        run: npm run test:schema
+
+  admin:
+    name: Admin dashboard (lint + build)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: admin
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: https://example.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder-key
+
+  flutter:
+    name: Flutter app (analyze + test)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Analyze
+        run: flutter analyze
+      - name: Tests
+        run: flutter test

@@ -1,0 +1,15 @@
+## Flutter/Dart tooling (generated locally — never commit)
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+coverage/
+
+## Android tooling
+android/local.properties
+android/.gradle/
+android/app/.cxx/
+android/key.properties
+*.jks
+*.keystore

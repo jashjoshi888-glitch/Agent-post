@@ -1,0 +1,5 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Debug builds need internet permission (the main manifest has it too,
+         but Android requires it here for hot-reload tooling). -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+</manifest>

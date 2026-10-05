@@ -1,0 +1,8 @@
+# Lint rules for the Flutter app. These are the standard, recommended rules
+# (flutter_lints) — no custom strictness that would surprise contributors.
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    prefer_single_quotes: true
+    unawaited_futures: true

@@ -1,0 +1,44 @@
+name: agent_post
+description: "AgentPost — premium marketing and customer assistant for insurance agents."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.5.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State management (Decision: Riverpod — see docs/DECISIONS.md).
+  flutter_riverpod: ^2.6.1
+
+  # Routing / navigation.
+  go_router: ^14.6.2
+
+  # Supabase: login, database, file storage.
+  supabase_flutter: ^2.8.4
+
+  # Photo picking, cropping and compression (profile photo + logo upload).
+  image_picker: ^1.1.2
+  image_cropper: ^8.1.0
+  flutter_image_compress: ^2.3.0
+
+  # Google Sign-In (used together with Supabase login).
+  google_sign_in: ^6.2.1
+
+  # Renders the curated brand fonts in the live brand-kit preview.
+  google_fonts: ^6.2.1
+
+  # Crash reporting (disabled automatically when no SENTRY_DSN is configured).
+  sentry_flutter: ^8.11.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # Lint rules for clean, conventional code.
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
