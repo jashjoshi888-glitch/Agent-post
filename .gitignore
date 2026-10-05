@@ -1,0 +1,51 @@
+# ---- Secrets: never commit real keys ----
+.env
+.env.*
+!.env.example
+*.env.local
+local.properties
+key.properties
+*.jks
+*.keystore
+google-services.json
+GoogleService-Info.plist
+service-account*.json
+
+# ---- Flutter / Dart ----
+app/.dart_tool/
+app/build/
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+app/.packages
+app/.pub-cache/
+app/.pub/
+app/coverage/
+app/*.iml
+app/.idea/
+app/android/local.properties
+app/android/.gradle/
+app/android/app/.cxx/
+app/android/key.properties
+app/.metadata
+
+# ---- Node / Next.js ----
+node_modules/
+admin/node_modules/
+admin/.next/
+admin/out/
+admin/.env.local
+admin/.env*.local
+npm-debug.log*
+.pnpm-debug.log*
+
+# ---- Supabase CLI local state ----
+supabase/.branches/
+supabase/.temp/
+supabase/.env
+
+# ---- Editors / OS ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

@@ -1,0 +1,16 @@
+{
+  "name": "agentpost-tooling",
+  "private": true,
+  "description": "Database rebuild and security (RLS) tests for AgentPost. Not part of the app or admin dashboard.",
+  "type": "module",
+  "scripts": {
+    "test": "npm run test:rls-coverage && npm run test:schema",
+    "test:rls-coverage": "node scripts/check-rls-coverage.mjs",
+    "test:schema": "node supabase/tests/rebuild-and-rls.test.mjs",
+    "test:rls-live": "node supabase/tests/rls-verify.mjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
+    "@supabase/supabase-js": "^2.49.0"
+  }
+}
